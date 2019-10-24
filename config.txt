@@ -1,0 +1,7 @@
+当计算机只能查找到管理节点cpu时，查看管理节点log文件夹的CollectorLog文件，一般会有拒绝别的计算机请求的信息。
+出现了UPDATE_MASTER_AD，UPDATE_SCHEDD_AD，UPDATE_STARTD_AD的未授权信息。
+解决方案是设置
+ALLOW_ADVERTISE_MASTER = *
+ALLOW_ADVERTISE_STARTD = *
+ALLOW_ADVERTISE_SCHEDD = *
+然后使用命令condor_reconfig
