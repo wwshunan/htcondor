@@ -1,7 +1,22 @@
 当计算机只能查找到管理节点cpu时，查看管理节点log文件夹的CollectorLog文件，一般会有拒绝别的计算机请求的信息。
 出现了UPDATE_MASTER_AD，UPDATE_SCHEDD_AD，UPDATE_STARTD_AD的未授权信息。
 解决方案是设置
+CONDOR_HOST = $(FULL_HOSTNAME)
+COLLECTOR_NAME = error_study
+UID_DOMAIN = 159.226.8.6
+CONDOR_ADMIN = 
+SMTP_SERVER = 
+ALLOW_READ = *
+ALLOW_WRITE = $(IP_ADDRESS), *
+ALLOW_ADMINISTRATOR = *
 ALLOW_ADVERTISE_MASTER = *
 ALLOW_ADVERTISE_STARTD = *
 ALLOW_ADVERTISE_SCHEDD = *
-然后使用命令condor_reconfig
+ALLOW_NEGOTIATOR = *
+use POLICY : ALWAYS_RUN_JOBS
+WANT_VACATE = FALSE
+WANT_SUSPEND = TRUE
+DAEMON_LIST = MASTER SCHEDD COLLECTOR NEGOTIATOR STARTD
+然后使用命令condor_reconfig 或condor_restart
+
+当电脑重启后任务管理器不出现condor进程时，用htcondor安装程序的修复功能解决，但不要重启
