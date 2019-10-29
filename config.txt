@@ -20,3 +20,5 @@ DAEMON_LIST = MASTER SCHEDD COLLECTOR NEGOTIATOR STARTD
 然后使用命令condor_reconfig 或condor_restart
 
 当电脑重启后任务管理器不出现condor进程时，用htcondor安装程序的修复功能解决，但不要重启
+当出现网络socket连不上时，查看电脑是不是有多个网卡，关闭无用网卡。
+当有任务一直idle时，查看运行电脑是不是有360之类的防火墙禁止运行，关闭之
